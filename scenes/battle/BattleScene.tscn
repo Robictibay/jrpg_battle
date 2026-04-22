@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d1i00e7vuw3do"]
+
+[ext_resource type="Script" uid="uid://bnhfbyk37sdda" path="res://scripts/battle/BattleManager.gd" id="1_1dyl0"]
+[ext_resource type="Script" uid="uid://cieb8kn5eh8h4" path="res://scripts/actors/Actor.gd" id="2_jb5ws"]
+
+[node name="BattleManager" type="Node" unique_id=1377073781]
+script = ExtResource("1_1dyl0")
+
+[node name="PlayerParty" type="Node" parent="." unique_id=935469395]
+
+[node name="Knight" type="Node" parent="PlayerParty" unique_id=2124118206]
+script = ExtResource("2_jb5ws")
+actor_name = "Knight"
+max_hp = 120
+attack_power = 18
+
+[node name="Mage" type="Node" parent="PlayerParty" unique_id=1750386274]
+script = ExtResource("2_jb5ws")
+actor_name = "Mage"
+max_hp = 80
+attack_power = 22
+
+[node name="EnemyParty" type="Node" parent="." unique_id=666186661]
+
+[node name="Goblin" type="Node" parent="EnemyParty" unique_id=2099983334]
+script = ExtResource("2_jb5ws")
+actor_name = "Goblin"
+max_hp = 70
+attack_power = 12
+is_player = false
+
+[node name="Slime" type="Node" parent="EnemyParty" unique_id=727131901]
+script = ExtResource("2_jb5ws")
+actor_name = "Slime"
+max_hp = 90
+is_player = false
