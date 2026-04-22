@@ -100,10 +100,10 @@ func resolve_queue(next_state: BattleState) -> void:
 		var type: String = action["type"]
 		
 		if not actor.is_alive():
-			continue # Dead characters can't act
+			continue 
 			
 		if target != null and not target.is_alive():
-			print(actor.actor_name + "'s target is already dead! Attack missed.")
+			print(actor.actor_name + "'s target is already dead! Action failed.")
 			continue 
 			
 		# Execute the command
@@ -120,6 +120,26 @@ func resolve_queue(next_state: BattleState) -> void:
 				actor.is_defending = true
 				var log_txt = actor.actor_name + " takes a defensive stance!"
 				print(log_txt)
+				action_resolved.emit(actor, type, target, log_txt)
+				
+			"charge":
+				actor.is_charging = true
+				var log_txt = actor.actor_name + " begins gathering massive power!"
+				print(log_txt)
+				action_resolved.emit(actor, type, target, log_txt)
+				
+			"heavy_slash":
+				# Standard Heavy Slash is 1.2x. If Charging, it becomes a massive 2.5x!
+				var multiplier = 2.5 if actor.is_charging else 1.2
+				var dmg = int(actor.attack_power * multiplier * randf_range(0.8, 1.2))
+				
+				var log_txt = actor.actor_name + " unleashes a Heavy Slash on " + target.actor_name + "!"
+				if actor.is_charging:
+					log_txt = actor.actor_name + " unleashes a DEVASTATING Charged Slash on " + target.actor_name + "!"
+					actor.is_charging = false # Consume the charge buff
+					
+				print(log_txt)
+				target.take_damage(dmg)
 				action_resolved.emit(actor, type, target, log_txt)
 		
 		# Check for Win/Loss after EVERY move

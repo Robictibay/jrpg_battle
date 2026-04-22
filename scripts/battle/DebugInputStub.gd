@@ -17,8 +17,12 @@ func _pick_scripted_action(actor: Actor) -> Dictionary:
 	var living_enemies = battle_manager.enemy_party.filter(func(e): return e.is_alive())
 	var target = living_enemies[0] if living_enemies.size() > 0 else null
 	
-	# Hardcoded test actions
 	if actor.actor_name == "Knight":
-		return { "actor": actor, "type": "attack", "target": target }
+		# The Knight's AI combo: If not charging, charge. If charging, slash!
+		if not actor.is_charging:
+			return { "actor": actor, "type": "charge", "target": null }
+		else:
+			return { "actor": actor, "type": "heavy_slash", "target": target }
 	else:
+		# Mage just defends for now
 		return { "actor": actor, "type": "defend", "target": null }

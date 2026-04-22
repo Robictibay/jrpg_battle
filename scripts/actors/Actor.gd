@@ -1,7 +1,6 @@
 extends Node
 class_name Actor
 
-# We added these two signals for the UI to use later
 signal hp_changed(actor: Actor, new_hp: int, max_hp: int)
 signal died(actor: Actor)
 
@@ -12,6 +11,7 @@ signal died(actor: Actor)
 
 var current_hp: int
 var is_defending: bool = false
+var is_charging: bool = false # NEW: Tracks if the actor is charging
 
 func _ready() -> void:
 	current_hp = max_hp
@@ -21,10 +21,14 @@ func take_damage(amount: int) -> void:
 		amount /= 2
 		print(actor_name + " blocked some damage!")
 
+	# NEW: Break the charge if hit!
+	if is_charging:
+		is_charging = false
+		print("CRITICAL: " + actor_name + " lost their focus! Charge interrupted!")
+
 	current_hp = clampi(current_hp - amount, 0, max_hp)
 	print(actor_name + " took " + str(amount) + " damage. HP: " + str(current_hp))
 	
-	# Emit the signal so UI health bars can update later
 	hp_changed.emit(self, current_hp, max_hp)
 
 	if current_hp <= 0:
@@ -36,3 +40,4 @@ func is_alive() -> bool:
 
 func reset_turn_state() -> void:
 	is_defending = false
+	# Note: We do NOT reset is_charging here, because it takes 2 turns to unleash
