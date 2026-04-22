@@ -16,11 +16,14 @@ func start_test_round() -> void:
 	var goblin: Actor = $EnemyParty/Goblin
 	var slime: Actor = $EnemyParty/Slime
 
+	# Knight attacks
 	if knight.is_alive() and goblin.is_alive():
 		perform_attack(knight, goblin)
 
-	if mage.is_alive() and slime.is_alive():
-		perform_attack(mage, slime)
+	# Mage defends instead of attacking
+	if mage.is_alive():
+		print(mage.actor_name + " braces for impact (Defends)!")
+		mage.is_defending = true
 
 	check_win_loss()
 	if not any_enemies_alive() or not any_players_alive():
@@ -28,9 +31,11 @@ func start_test_round() -> void:
 
 	print("--- Enemy Phase ---")
 
+	# Goblin attacks Knight
 	if goblin.is_alive() and knight.is_alive():
 		perform_attack(goblin, knight)
 
+	# Slime attacks the defending Mage
 	if slime.is_alive() and mage.is_alive():
 		perform_attack(slime, mage)
 
