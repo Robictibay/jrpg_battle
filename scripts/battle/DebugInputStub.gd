@@ -25,10 +25,9 @@ func _pick_scripted_action(actor: Actor) -> Dictionary:
 			return { "actor": actor, "type": "heavy_slash", "target": target }
 			
 	else: 
-		# NEW MAGE AI:
-		# If the Mage drops below half health (40 HP), use a Potion!
+		# If the Mage drops below half health, use a Potion!
 		if actor.current_hp < (actor.max_hp / 2):
 			return { "actor": actor, "type": "potion", "target": actor }
-		# Otherwise, blast the enemy with Fireball!
+		# Otherwise, Fireball!
 		else:
 			return { "actor": actor, "type": "fireball", "target": target }
