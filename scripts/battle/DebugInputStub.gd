@@ -18,11 +18,17 @@ func _pick_scripted_action(actor: Actor) -> Dictionary:
 	var target = living_enemies[0] if living_enemies.size() > 0 else null
 	
 	if actor.actor_name == "Knight":
-		# The Knight's AI combo: If not charging, charge. If charging, slash!
+		# Keep the Knight's combo going
 		if not actor.is_charging:
 			return { "actor": actor, "type": "charge", "target": null }
 		else:
 			return { "actor": actor, "type": "heavy_slash", "target": target }
-	else:
-		# Mage just defends for now
-		return { "actor": actor, "type": "defend", "target": null }
+			
+	else: 
+		# NEW MAGE AI:
+		# If the Mage drops below half health (40 HP), use a Potion!
+		if actor.current_hp < (actor.max_hp / 2):
+			return { "actor": actor, "type": "potion", "target": actor }
+		# Otherwise, blast the enemy with Fireball!
+		else:
+			return { "actor": actor, "type": "fireball", "target": target }
