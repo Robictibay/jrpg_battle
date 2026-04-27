@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnhfbyk37sdda" path="res://scripts/battle/BattleManager.gd" id="1_1dyl0"]
 [ext_resource type="Script" uid="uid://cieb8kn5eh8h4" path="res://scripts/actors/Actor.gd" id="2_jb5ws"]
+[ext_resource type="Script" uid="uid://bgs6fhqy14w56" path="res://scenes/ui/battle_ui.gd" id="3_ss6fd"]
 [ext_resource type="Texture2D" uid="uid://bh10yuruyqekb" path="res://assets/sprites/knight/IDLE.png" id="3_t3o3d"]
 [ext_resource type="Texture2D" uid="uid://d3jx064kwtyhw" path="res://assets/sprites/knight/ATTACK 1.png" id="3_tdj1d"]
 [ext_resource type="PackedScene" uid="uid://kme5c4he53vr" path="res://scenes/ui/battle_ui.tscn" id="3_vd1me"]
@@ -796,11 +797,13 @@ animations = [{
 [node name="BattleManager" type="Node" unique_id=1377073781]
 script = ExtResource("1_1dyl0")
 
-[node name="battle_ui" parent="." unique_id=431339333 instance=ExtResource("3_vd1me")]
+[node name="battle_ui" parent="." unique_id=431339333 node_paths=PackedStringArray("battle_manager") instance=ExtResource("3_vd1me")]
 offset_left = -576.0
 offset_top = -318.0
 offset_right = 574.0
 offset_bottom = 325.0
+script = ExtResource("3_ss6fd")
+battle_manager = NodePath("..")
 
 [node name="PlayerParty" type="Node" parent="." unique_id=935469395]
 
