@@ -1,45 +1,68 @@
 [gd_scene format=3 uid="uid://kme5c4he53vr"]
 
+[ext_resource type="Texture2D" uid="uid://bq0iqcnx7e0dw" path="res://assets/game_background_1.png" id="1_2hywk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_giji0"]
+bg_color = Color(0.6, 0.6, 0.6, 0.59607846)
+
 [node name="battle_ui" type="Control" unique_id=431339333]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="GameBackground1" type="Sprite2D" parent="." unique_id=970389009]
+position = Vector2(566.5, 316)
+scale = Vector2(0.3138021, 0.32222226)
+texture = ExtResource("1_2hywk")
+
+[node name="Background" type="ColorRect" parent="." unique_id=961732478]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.035815537, 0.079840764, 0.17541167, 1)
+
 [node name="ActionMenu" type="Panel" parent="." unique_id=1492542573]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+offset_top = 509.0
+offset_right = 1151.0
+offset_bottom = 640.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_giji0")
 
-[node name="CommandList" type="VBoxContainer" parent="ActionMenu" unique_id=748562314]
+[node name="CommandList" type="HBoxContainer" parent="ActionMenu" unique_id=670242271]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 580.0
+offset_bottom = 125.0
 
-[node name="AttackButton" type="Button" parent="ActionMenu" unique_id=974229774]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="AttackButton" type="Button" parent="ActionMenu/CommandList" unique_id=974229774]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Attack
+"
 
-[node name="MagicButton" type="Button" parent="ActionMenu" unique_id=305395238]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="MagicButton" type="Button" parent="ActionMenu/CommandList" unique_id=305395238]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Magic"
 
-[node name="SkillButton" type="Button" parent="ActionMenu" unique_id=305972440]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="SkillButton" type="Button" parent="ActionMenu/CommandList" unique_id=305972440]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Skill"
 
-[node name="ItemButton" type="Button" parent="ActionMenu" unique_id=826450999]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="ItemButton" type="Button" parent="ActionMenu/CommandList" unique_id=826450999]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+text = "Item"
 
 [node name="TargetSelector" type="Panel" parent="." unique_id=1945251003]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1090.0
+offset_top = 509.0
+offset_right = 1130.0
+offset_bottom = 549.0
 
 [node name="TargetList" type="VBoxContainer" parent="TargetSelector" unique_id=150186172]
 layout_mode = 0
@@ -53,25 +76,31 @@ offset_bottom = 8.0
 
 [node name="StatusPanel" type="Panel" parent="." unique_id=1082538240]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 730.0
+offset_top = 509.0
+offset_right = 1080.0
+offset_bottom = 629.0
 
-[node name="StatusGrid" type="GridContainer" parent="StatusPanel" unique_id=294431286]
+[node name="StatusGrid" type="GridContainer" parent="StatusPanel" unique_id=1700865152]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+columns = 2
 
 [node name="BattleLogPanel" type="Panel" parent="." unique_id=1246942964]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 420.0
+offset_top = 509.0
+offset_right = 720.0
+offset_bottom = 629.0
 
 [node name="LogContainer" type="VBoxContainer" parent="BattleLogPanel" unique_id=634503261]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Background" type="ColorRect" parent="." unique_id=961732478]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleLogPanel" unique_id=1455822620]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 155.0
 offset_bottom = 40.0
+text = "Battle Log"

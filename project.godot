@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="jrpg_battle"
+run/main_scene="uid://d1i00e7vuw3do"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [physics]
@@ -19,4 +20,5 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
