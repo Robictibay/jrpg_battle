@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnhfbyk37sdda" path="res://scripts/battle/BattleManager.gd" id="1_1dyl0"]
 [ext_resource type="Script" uid="uid://cieb8kn5eh8h4" path="res://scripts/actors/Actor.gd" id="2_jb5ws"]
-[ext_resource type="Script" uid="uid://bjx6fqg1cf0gg" path="res://scripts/battle/DebugInputStub.gd" id="3_vd1me"]
+[ext_resource type="PackedScene" uid="uid://kme5c4he53vr" path="res://scenes/ui/battle_ui.tscn" id="3_vd1me"]
 
 [node name="BattleManager" type="Node" unique_id=1377073781]
 script = ExtResource("1_1dyl0")
@@ -36,6 +36,8 @@ actor_name = "Slime"
 max_hp = 90
 is_player = false
 
-[node name="DebugInputStub" type="Node" parent="." unique_id=1600158845 node_paths=PackedStringArray("battle_manager")]
-script = ExtResource("3_vd1me")
-battle_manager = NodePath("..")
+[node name="battle_ui" parent="." unique_id=431339333 instance=ExtResource("3_vd1me")]
+offset_left = -26.0
+offset_top = 436.0
+offset_right = 14.0
+offset_bottom = 476.0
